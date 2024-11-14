@@ -23,7 +23,7 @@ export default function Portfolio() {
       stackFront:["ReactJS", "JavaScript", "SCSS"],
       stackBack:["NodeJS", "ExpressJS", "Mongoose", "API externes"],
       description:"Single Page Application développée dans le cadre de mon projet de formation, que je continue à développer en autonomie. Données utilisateurs enregistrées et sécurisées en base de données mySQL, Serveur API Express/NodeJS avec architecture REST et gestion du CRUD, avec entre autres un panel Admin.",
-      URL:""
+      URL:"https://fest-connect.onrender.com"
     },
     {
       id:"2",

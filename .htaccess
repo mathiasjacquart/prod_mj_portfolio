@@ -1,0 +1,18 @@
+# Désactiver le cache
+<IfModule mod_headers.c>
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+</IfModule>
+
+# Activer la réécriture d'URL
+RewriteEngine On
+
+
+# Rediriger la racine vers le dossier dist
+RewriteCond %{REQUEST_URI} !^/dist/
+RewriteRule ^(.*)$ /dist/$1 [L]
+
+# Rediriger toutes les requêtes vers index.html dans dist (pour les routes de la SPA)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ /dist/index.html [L]

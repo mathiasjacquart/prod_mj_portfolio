@@ -16,6 +16,8 @@ app.use(
 );
 
 app.use("/api/contact",contactRoutes);
+console.log(process.env.MONGO_URI);
+mongoose.set('debug', true);
 mongoose
     .connect(process.env.MONGO_URI)
     .then(()=> {

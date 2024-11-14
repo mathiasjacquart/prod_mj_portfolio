@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:1780/api/contact";
+const BASE_URL = "http://localhost:443/api/contact";
 
 export async function sendMessage(values) {
   try {
