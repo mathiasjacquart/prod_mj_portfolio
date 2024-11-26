@@ -644,7 +644,7 @@ label{
 textarea{
   padding: 10px;
   border-radius: 10px;
-  border: 1px solid #29514e;
+  border: 1px solid #29514e !important;
   margin-bottom: 15px;
   color: black !important;
   resize: none;

@@ -95,7 +95,6 @@ export default function Portfolio() {
     },
   ]
   const settings = {
-    autoplay:true,
     dots: true,
     infinite: false,
     speed: 500,
