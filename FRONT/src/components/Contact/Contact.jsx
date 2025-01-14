@@ -2,10 +2,15 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react"
-import { sendMessage } from "../../API/contact";
+import emailjs from "@emailjs/browser"; 
+
 import ty from "../../assets/images/tyl.png"
 
 export default function Contact() {
+
+  const serviceId = import.meta.env.VITE_SERVICE_ID;
+  const templateId = import.meta.env.VITE_TEMPLATE_ID;
+  const publicId = import.meta.env.VITE_PUBLIC_ID;
   const [feedback, setFeedback] = useState(null);
   const [showRedirection, setShowRedirection] = useState(false);
   const schema = yup.object({
@@ -29,20 +34,29 @@ export default function Contact() {
 
   };
   async function submit(values) {
-    console.log(values);
     try {
-      const response = await sendMessage(values);
-      console.log(response);
-      setFeedback(response.message);
+      const result = await emailjs.send(
+        serviceId, 
+        templateId,  
+        {
+          firstname: values.firstname,
+          surname: values.surname,
+          email: values.email,
+          message: values.message,
+        },
+         publicId
+      );
+      console.log(result.text);
+      setFeedback("Votre message a été envoyé avec succès !");
       setShowRedirection(true);
     } catch (error) {
-      console.error(error);
+      console.error("Erreur lors de l'envoi :", error);
+      setFeedback("Une erreur est survenue lors de l'envoi du message.");
     }
   }
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm({
     defaultValues,
